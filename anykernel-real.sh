@@ -102,6 +102,10 @@ if [ -e $ramdisk/etc/init.aurora.rc ];then
   ui_print "delete /etc/init.aurora.rc"
 fi
 
+# Put Android Version on cmdline
+android_ver=$(file_getprop /system/build.prop ro.build.version.release);
+patch_cmdline androidboot.version androidboot.version=$android_ver
+
 # end ramdisk changes
 
 write_boot;
